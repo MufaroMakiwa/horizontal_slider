@@ -6,7 +6,7 @@ import "../utilities.css";
 
 const CarouselSection = (props) => {
   return (
-    <div className="CarouselSection-container">
+    <div className="CarouselSection-container" style={{backgroundColor: props.color}}>
       <Card title={Math.floor(Math.random() * 1000)} />
       <Card title={Math.floor(Math.random() * 1000)} />
       <Card title={Math.floor(Math.random() * 1000)} />

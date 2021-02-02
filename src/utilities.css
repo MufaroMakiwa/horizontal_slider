@@ -25,3 +25,9 @@
     --arrow_size: 30px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  :root {
+    --arrow_size: 25px;
+  }
+}

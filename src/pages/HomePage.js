@@ -4,7 +4,7 @@ import Carousel from "../components/Carousel.js"
 const HomePage = () => {
   return (
     <div>
-      <Carousel title="The four seasons" />
+      <Carousel />
       
     </div>
   )
