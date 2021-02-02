@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import SliderSection from './SliderSection.js';
 import "./Carousel.css";
 import Card from "./Card.js";
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import CarouselSection from "./CarouselSection.js";
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import "../utilities.css";
+
 
 const Carousel = () => {
   const sliderRef = useRef();
@@ -65,38 +67,51 @@ const Carousel = () => {
   }
 
 
-  useEffect(() => {
-    startSlideShow();
+  // useEffect(() => {
+  //   startSlideShow();
 
-    carouselRef.current.addEventListener("mouseover", () => {
-      clearInterval(intervalId);
-    })
+  //   carouselRef.current.addEventListener("mouseover", () => {
+  //     clearInterval(intervalId);
+  //   })
 
-    carouselRef.current.addEventListener("mouseout", () => {
-      startSlideShow();
-    })
-  }, [])
+  //   carouselRef.current.addEventListener("mouseout", () => {
+  //     startSlideShow();
+  //   })
+  // }, [])
 
 
   return (
-    <div className="Carousel-container">
-      <div className="Carousel-inner" ref={carouselRef}>
-        <div className="Carousel-slider" ref={sliderRef}>
-          <section>Content for section 1</section>
-          <section>Content for section 2</section>
-          <section>Content for section 3</section>
-          <section>Content for section 4</section>
-        </div>
+    // <div className="Carousel-container">
+    //   <div className="Carousel-inner" ref={carouselRef}>
+    //     <div className="Carousel-slider" ref={sliderRef}>
+    //       <section>Content for section 1</section>
+    //       <section>Content for section 2</section>
+    //       <section>Content for section 3</section>
+    //       <section>Content for section 4</section>
+    //     </div>
         
-        <div className="Carousel-controls">
-          <span className="Carousel-arrow left" onClick={navigateLeft}>
-            <ArrowBackIosIcon />
-          </span>
+    //     <div className="Carousel-controls">
+    //       <span className="Carousel-arrow left" onClick={navigateLeft}>
+    //         <ArrowBackIosIcon />
+    //       </span>
 
-          <span className="Carousel-arrow right" onClick={navigateRight}>
-            <ArrowForwardIosIcon />
-          </span>
-        </div>
+    //       <span className="Carousel-arrow right" onClick={navigateRight}>
+    //         <ArrowForwardIosIcon />
+    //       </span>
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="Carousel-container">
+      <div className="Carousel-inner">     
+        <div></div>   
+        <CarouselSection />
+        <CarouselSection />
+        <CarouselSection />
+      </div>
+
+      <div className="Carousel-arrowContainer">
+        <button className="Carousel-arrow previous" onClick={navigateLeft}><ChevronLeftIcon /></button>
+        <button className="Carousel-arrow next" onClick={navigateRight}><ChevronRightIcon /></button>
       </div>
     </div>
   )

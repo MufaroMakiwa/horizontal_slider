@@ -1,4 +1,4 @@
-.Carousel-container {
+/* .Carousel-container {
   width: 80%;
   margin: 0 auto;
   height: 400px;
@@ -48,4 +48,42 @@
 
 .Carousel-arrow.right {
   right: 10px;
+} */
+
+.Carousel-container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 50px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.Carousel-inner {
+  display: flex;
+  flex-direction: row;
+}
+
+.Carousel-arrow {
+  outline: none;
+  width: var(--arrow_size);
+  height: var(--arrow_size);
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.Carousel-arrow.previous {
+  left: 0;
+}
+
+.Carousel-arrow.next {
+  right: 0;
 }

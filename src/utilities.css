@@ -1,0 +1,27 @@
+:root {
+  --arrow_size: 50px;
+}
+
+@media screen and (max-width: 1200px) {
+  :root {
+    --arrow_size: 45px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    --arrow_size: 40px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  :root {
+    --arrow_size: 35px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  :root {
+    --arrow_size: 30px;
+  }
+}
