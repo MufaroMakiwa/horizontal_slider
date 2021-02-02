@@ -6,28 +6,64 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const Carousel = () => {
-  const [sectionIndex, setSection] = useState(0);
   const sliderRef = useRef();
+  const carouselRef = useRef();
+
+  let direction = 1;
 
   const navigateLeft = () => {
-    setSection(sectionIndex => (sectionIndex > 0) ? sectionIndex - 1 : 0);
+    if (direction === 1) {
+      sliderRef.current.appendChild(sliderRef.current.firstChild);
+      direction = -1;
+    }
+
+    carouselRef.current.style.justifyContent = "flex-end";
+    sliderRef.current.style.transform = 'translate(25%)';
+    sliderRef.current.addEventListener("transitionend", handleTransitionLeft);
   }
 
-  const navigateRight = () => {
-    setSection(sectionIndex => (sectionIndex < 3) ? sectionIndex + 1 : 3);
+
+  const navigateRight = () => { 
+    if (direction === -1) {
+      sliderRef.current.prepend(sliderRef.current.lastChild);
+      direction = 1;
+    }
+  
+    carouselRef.current.style.justifyContent = "flex-start";
+    sliderRef.current.style.transform = 'translate(-25%)';
+    sliderRef.current.addEventListener("transitionend", handleTransitionRight);
+  }
+
+
+  const handleTransitionLeft = () => {
+    sliderRef.current.prepend(sliderRef.current.lastChild);
+    handleTransition(handleTransitionLeft);
+  }
+
+
+  const handleTransitionRight = () => {
+    sliderRef.current.appendChild(sliderRef.current.firstChild);
+    handleTransition(handleTransitionRight);
+  }
+
+  const handleTransition = (func) => {
+    sliderRef.current.style.transition = "none";
+    sliderRef.current.style.transform = "translate(0)";
+
+    const timer = setTimeout(() => {
+      sliderRef.current.style.transition = "all 0.5s";
+      sliderRef.current.removeEventListener("transitionend", func);
+    });
+    return () => clearTimeout(timer);
   }
 
   useEffect(() => {
-    sliderRef.current.style.transform = 'translate(' + (sectionIndex) * -25 + '%)';
-    // sliderRef.current.addEventListener("transitionend", () => {
-    //   sliderRef.current.appendChild(sliderRef.current.firstChild);
-    // })
-  }, [sectionIndex])
 
+  }, []);
 
   return (
     <div className="Carousel-container">
-      <div className="Carousel-inner">
+      <div className="Carousel-inner" ref={carouselRef}>
         <div className="Carousel-slider" ref={sliderRef}>
           <section>Content for section 1</section>
           <section>Content for section 2</section>
