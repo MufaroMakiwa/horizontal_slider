@@ -30,6 +30,12 @@
   align-items: center;
   font-weight: bold;
   text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.Navbar-logo:hover {
+  color: rgb(255, 255, 255, 0.5);
+  transform: scale(1.1);
 }
 
 @media screen and (max-width: 960px) {

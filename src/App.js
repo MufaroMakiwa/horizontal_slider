@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from "./components/Navbar.js";
 import { Router } from "@reach/router";
+import HomePage from "./pages/HomePage.js";
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <Navbar />
       <div className="App-container"> 
         <Router>
+          <HomePage path="/"/>
           
         </Router>
       </div>

@@ -1,0 +1,29 @@
+.Card-container {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  flex-grow: 1;
+  margin: 16px 8px;
+  transition: transform 0.2s;
+}
+
+.Card-container:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.Card-thumbnail {
+  background-color: rgb(0, 0, 0, 0.1);
+  height: 200px;
+  border: none;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Card-title {
+  font-size: 0.9em;
+  padding: 8px 0;
+  text-align: center;
+}
