@@ -1,4 +1,43 @@
 .Carousel-container {
-  display: grid;
-  grid-template-columns: repeat(3, 100%);
+  width: 50%;
+  margin: 10px auto;
+}
+
+.Carousel-inner {
+  border: 1px solid black;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.Carousel-slider {
+  height: 100%;
+  display: flex;
+  width: 400%;
+  transition: all 0.3s;
+}
+
+.Carousel-slider section {
+  flex-basis: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.Carousel-controls {
+}
+
+.Carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.Carousel-arrow.left {
+  left: 10px;
+}
+
+.Carousel-arrow.right {
+  right: 10px;
 }
