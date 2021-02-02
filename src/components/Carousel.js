@@ -8,8 +8,8 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 const Carousel = () => {
   const sliderRef = useRef();
   const carouselRef = useRef();
-
   let direction = 1;
+  let intervalId = 0;
 
   const navigateLeft = () => {
     if (direction === 1) {
@@ -28,7 +28,7 @@ const Carousel = () => {
       sliderRef.current.prepend(sliderRef.current.lastChild);
       direction = 1;
     }
-  
+    
     carouselRef.current.style.justifyContent = "flex-start";
     sliderRef.current.style.transform = 'translate(-25%)';
     sliderRef.current.addEventListener("transitionend", handleTransitionRight);
@@ -57,9 +57,26 @@ const Carousel = () => {
     return () => clearTimeout(timer);
   }
 
-  useEffect(() => {
 
-  }, []);
+  const startSlideShow = () => {
+    intervalId = setInterval(() => {
+      navigateRight();
+    }, 5000);
+  }
+
+
+  useEffect(() => {
+    startSlideShow();
+
+    carouselRef.current.addEventListener("mouseover", () => {
+      clearInterval(intervalId);
+    })
+
+    carouselRef.current.addEventListener("mouseout", () => {
+      startSlideShow();
+    })
+  }, [])
+
 
   return (
     <div className="Carousel-container">
