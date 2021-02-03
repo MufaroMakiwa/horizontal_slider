@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import "./Carousel.css";
 import CarouselSection from "./CarouselSection.js";
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -6,12 +6,14 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import "../utilities.css";
 
 
-const Carousel = () => {
+const Carousel = (props) => {
   const sliderRef = useRef();
   const carouselRef = useRef();
+  const [sections, setSections] = useState([]);
+
 
   let direction = 1;
-  let intervalId = 0;
+  let intervalId;
 
   const navigateLeft = () => {
     if (direction === 1) {
@@ -65,40 +67,61 @@ const Carousel = () => {
     }, 5000);
   }
 
+  const splitSections = (size) => {
+    console.log("Creating sections with size: ", size);
+    let splits = [];
+    const allElements = [...props.fruits];
+
+    let i, j, temparray;
+    // for (i = 0, j = allElements.length; i < j; i += size) {
+    //     temparray = allElements.slice(i ,i + size);
+    //     splits.push(temparray);
+    // }
+
+    let sections = splits.map((section, i) => (
+      <CarouselSection 
+        key={`CarouselSection_${i}`}
+        elements={section}/>
+    ))
+    return sections;
+  }
+
+
 
   useEffect(() => {
+    // console.log("Rerendering");
+    // setSections(splitSections(props.carouselSections));
+    
     startSlideShow();
 
-    carouselRef.current.addEventListener("mouseenter", () => {
+    const handleMouseEnter = () => {
       clearInterval(intervalId);
-    })
+    }
 
-    carouselRef.current.addEventListener("mouseleave", () => {
+    const handleMouseLeave = () => {
       startSlideShow();
-    })
-  }, [])
+    }
+
+    carouselRef.current.addEventListener("mouseenter", handleMouseEnter)
+    carouselRef.current.addEventListener("mouseleave", handleMouseLeave)
+
+  }, [props.carouselSections])
 
 
   return (
     <div className="Carousel-container">
       <div className="Carousel-inner" ref={carouselRef}>     
         <div className="Carousel-slider" ref={sliderRef}> 
-          {/* <CarouselSection color="red"/>
-          <CarouselSection color="blue"/>
-          <CarouselSection color="green"/>
-          <CarouselSection color="yellow"/>
-          <CarouselSection color="brown"/> */}
 
+          {sections}
 
-          <CarouselSection/>
-          <CarouselSection/>
-          <CarouselSection/>
-          <CarouselSection/>
-          <CarouselSection/>
+          <CarouselSection elements={[1, 2, 3, 4, 5]}/>
+          <CarouselSection elements={[6, 7, 8, 9, 10]}/>
+          <CarouselSection elements={[11, 12, 13, 14, 15]}/>
+          <CarouselSection elements={[16, 17, 18, 19, 20]}/>
+          <CarouselSection elements={[21, 22, 23, 24, 25]}/>
           
         </div>
-
-
         <div className="Carousel-arrowContainer">
           <div 
             className="Carousel-arrow previous" 
